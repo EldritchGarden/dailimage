@@ -20,7 +20,9 @@ func main() {
 			"message": "OK",
 		})
 	})
-	router.GET("/random", image.RandomImagePath)
+
+	router.GET("/random", image.GetRandomImage)
+	router.GET("/random/*subpath", image.GetRandomImagePath)
 
 	router.Run(fmt.Sprintf("%s:%s", config.ENV.Addr, config.ENV.Port))
 }
