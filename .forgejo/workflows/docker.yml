@@ -10,7 +10,7 @@ jobs:
           registry: ${{ vars.REGISTRY }}
           username: ${{ github.actor}}
           password: ${{ secrets.PACKAGE_TOKEN }}
-      - run: apt update && apt install dnsutils -y && nslookup code.eldritch.garden
+      - run: apt update && apt install curl -y && curl https://code.eldritch.garden
       - uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64
