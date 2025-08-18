@@ -10,9 +10,10 @@ jobs:
           registry: ${{ vars.REGISTRY }}
           username: ${{ github.actor}}
           password: ${{ secrets.PACKAGE_TOKEN }}
-      - run: apt update && apt install curl -y && curl https://code.eldritch.garden
       - uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: ${{ vars.REGISTRY }}/${{ github.repository }}:latest
+          # looks like this is required to properly fetch the source
+          context: .
