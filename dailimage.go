@@ -13,6 +13,8 @@ func main() {
 	router := gin.Default()
 	if len(config.ENV.TrustedProxies) > 0 {
 		router.SetTrustedProxies(config.ENV.TrustedProxies)
+	} else {
+		router.SetTrustedProxies(nil) // Disable trusted proxies if none are set
 	}
 
 	router.GET("/ping", func(c *gin.Context) {

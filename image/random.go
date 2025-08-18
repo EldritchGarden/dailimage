@@ -21,6 +21,8 @@ func randomImagePath(root string) (string, error) {
 		list, err := file.Readdirnames(-1)
 		if err != nil {
 			return "", err
+		} else if len(list) == 0 {
+			return "", errors.New("no files found in directory: " + root)
 		}
 
 		randIndex := rand.Intn(len(list))
