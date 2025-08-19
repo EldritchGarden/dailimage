@@ -53,5 +53,7 @@ jobs:
           docker pull $image:latest
           docker tag $image:latest $image:$ref
           docker tag $image:latest $dh_image:$ref
+          docker tag %image:latest $dh_image:latest
           docker push $image:$ref
           docker push $dh_image:$ref
+          docker push $dh_image:latest
