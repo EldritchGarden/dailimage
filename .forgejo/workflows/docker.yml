@@ -48,7 +48,7 @@ jobs:
       - name: Tag and push latest image
         run: |
           image="${{ vars.REGISTRY }}/${{ github.repository }}"
-          dh_image="${{ vars.DOCKERHUB_USERNAME }}/${{ github.repository }}"
+          dh_image="${{ vars.DOCKERHUB_USERNAME }}/$(basename ${{ github.repository }})"
           ref="${{ github.ref_name }}"
           docker pull $image:latest
           docker tag $image:latest $image:$ref
