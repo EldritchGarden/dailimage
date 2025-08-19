@@ -67,13 +67,14 @@ All env vars are optional.
 ## Setup
 ### Docker and Compose
 Docker run:
-`docker run -p 8080:8080 -v <media_path>:/media eldritchgarden/dailimage:latest`
+`docker run -p 8080:8080 -u 1000:1000 -v <media_path>:/media eldritchgarden/dailimage:latest`
 
 Docker compose:
 ```yaml
 services:
   dailimage:
     image: eldritchgarden/dailimage:latest
+    user: 1000:1000 # optional
     ports:
       - 8080:8080
     volumes:
