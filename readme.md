@@ -66,6 +66,8 @@ All env vars are optional.
 
 ## Setup
 ### Docker and Compose
+[Docker Hub](https://hub.docker.com/r/eldritchgarden/dailimage)
+
 Docker run:
 `docker run -p 8080:8080 -u 1000:1000 -v <media_path>:/media eldritchgarden/dailimage:latest`
 
