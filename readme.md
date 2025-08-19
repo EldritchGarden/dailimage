@@ -67,16 +67,18 @@ All env vars are optional.
 ## Setup
 ### Docker and Compose
 Docker run:
-`docker run -p 8080:8080 -v <media_path>:/media TODO`
+`docker run -p 8080:8080 -v <media_path>:/media eldritchgarden/dailimage:latest`
 
 Docker compose:
 ```yaml
 services:
   dailimage:
-    image: TODO
+    image: eldritchgarden/dailimage:latest
     ports:
       - 8080:8080
     volumes:
       - <media_path>:/media
     restart: unless-stopped
 ```
+
+*Note: I recommend you pin the version, but latest will track the latest release version*
