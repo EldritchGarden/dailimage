@@ -1,4 +1,4 @@
-﻿# This script downloads an image from a URL and sets it as the desktop wallpaper on Windows
+# This script downloads an image from a URL and sets it as the desktop wallpaper on Windows
 # Set the below variables to customize the image URL, working directory, and wallpaper style
 $IMAGE_URL = "http://example.com:8080/random"
 $WORKDIR = "$env:userprofile\dailimage"
