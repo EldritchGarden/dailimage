@@ -2,11 +2,15 @@
 Get a random image with a simple API call
 
 ## Description
-Dailimage is a simple lightweight web server designed to serve a random image. It's written in Go using Gin
-and the docker image runs on Alpine. While it's designed to serve images, it actually makes no
-real distinction between file types and can be used to serve any files.
+Dailimage is a simple lightweight web server designed to serve a random image.
+It's written in Go using Gin and the docker image runs on Alpine.
+While it's designed to serve images, it actually makes no real distinction
+between file types and can be used to serve any files.
 
 ## Usage and Endpoints
+Check out the [examples](docs/example/) for scripts, snippets, etc. for using
+dailimage.
+
 ### Configuration
 All env vars are optional.
 <table>
@@ -19,7 +23,8 @@ All env vars are optional.
   <tbody>
     <tr>
       <td>GIN_MODE</td>
-      <td>Gin logging level, defaults to 'relase', set to 'debug' for more logs</td>
+      <td>Gin logging level, defaults to 'relase', set to 'debug'
+      for more logs</td>
     </tr>
     <tr>
       <td>BIND_ADDR</td>
@@ -31,11 +36,13 @@ All env vars are optional.
     </tr>
     <tr>
       <td>MEDIA_ROOT</td>
-      <td>Root dir for files to serve. Defaults to /media, only change this if you change the mount point in the container.</td>
+      <td>Root dir for files to serve. Defaults to /media, only change this if
+      you change the mount point in the container.</td>
     </tr>
     <tr>
       <td>TRUSTED_PROXIES</td>
-      <td>Comma separated list of proxies to trust. If not set trusted proxies are disabled.</td>
+      <td>Comma separated list of proxies to trust. If not set trusted proxies
+      are disabled.</td>
     </tr>
   </tbody>
 </table>
@@ -59,7 +66,8 @@ All env vars are optional.
     </tr>
     <tr>
       <td>/random/*subdir</td>
-      <td>Returns a random image from a sub path under media dir. /random/art would return a file under /media/art.</td>
+      <td>Returns a random image from a sub path under media dir. /random/art
+      would return a file under /media/art.</td>
     </tr>
   </tbody>
 </table>
@@ -84,4 +92,5 @@ services:
     restart: unless-stopped
 ```
 
-*Note: I recommend you pin the version, but latest will track the latest release version*
+*Note: I recommend you pin the version, but latest will track the latest
+release version*
