@@ -1,3 +1,12 @@
+- [Dailimage](#dailimage)
+  - [Description](#description)
+  - [Usage and Endpoints](#usage-and-endpoints)
+    - [Configuration](#configuration)
+    - [API](#api)
+      - [Examples](#examples)
+  - [Setup](#setup)
+    - [Docker and Compose](#docker-and-compose)
+
 # Dailimage
 Get a random image with a simple API call
 
@@ -48,29 +57,30 @@ All env vars are optional.
 </table>
 
 ### API
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>/ping</td>
-      <td>Returns a simple OK message</td>
-    </tr>
-    <tr>
-      <td>/random</td>
-      <td>Returns a random image from media dir</td>
-    </tr>
-    <tr>
-      <td>/random/*subdir</td>
-      <td>Returns a random image from a sub path under media dir. /random/art
-      would return a file under /media/art.</td>
-    </tr>
-  </tbody>
-</table>
+- `/ping` : Return a simple '200 OK' message
+- `/random` : Return a random image from the media library
+- `/random/*subpath` : Return a random image from `subpath/`
+- `/slideshow[?...]` : Web page with auto-refresh for browser use
+  - `interval=30` : Seconds between refreshes
+  - `subpath=somedir` : Use images from the specified sub folder
+  - `mode=(full | frame)` : View mode
+    - `full` uses the entire window and crops excess
+    - `frame` fits the image into the window with a small border
+
+#### Examples
+With a media folder structure like:
+```
++ media
+| + family
+| | + vacation
+| + art
+```
+
+`/random` will return an image from anywhere in 'media'
+
+`/random/family` will return an image from 'family' or 'vacation' but not 'art'
+
+`/slideshow?interval=60&subpath=art&mode=full` will show a new fullscreen image under 'art' every 60 seconds
 
 ## Setup
 ### Docker and Compose
