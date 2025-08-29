@@ -10,6 +10,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	log "github.com/sirupsen/logrus"
 )
 
 //go:embed templates
@@ -22,8 +23,10 @@ func main() {
 	router := gin.Default()
 	if len(config.ENV.TrustedProxies) > 0 {
 		router.SetTrustedProxies(config.ENV.TrustedProxies)
+		log.Debug("Trusted proxies: ", config.ENV.TrustedProxies)
 	} else {
 		router.SetTrustedProxies(nil) // Disable trusted proxies if none are set
+		log.Debug("Trusted proxies disabled")
 	}
 
 	// Load embedded templates

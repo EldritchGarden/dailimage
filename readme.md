@@ -53,8 +53,25 @@ All env vars are optional.
       <td>Comma separated list of proxies to trust. If not set trusted proxies
       are disabled.</td>
     </tr>
+    <tr>
+      <td>LOG_LEVEL</td>
+      <td>App logging level, set to 'debug' for more logs. Default 'info'</td>
+    </tr>
+    <tr>
+      <td>UNIQUE_FACTOR</td>
+      <td>The percentage of files left in the cache before a refresh is
+      triggered. This controls how often images may repeat, lower values
+      mean less repeats.<sup>1</sup> Valid values between 0.01-1,
+      default 0.5</td>
+    </tr>
   </tbody>
 </table>
+
+*1. May not affect subfolders depending on the number of files present.
+Caching is global for all clients, so lower values of UNIQUE_FACTOR
+may be required when using many clients. This is subject to change.
+A value of 1 will disable cache refreshes, meaning images may repeat
+frequently and new images will not be detected.*
 
 ### API
 - `/ping` : Return a simple '200 OK' message
@@ -102,5 +119,4 @@ services:
     restart: unless-stopped
 ```
 
-*Note: I recommend you pin the version, but latest will track the latest
-release version*
+*Note: I recommend you pin the version*
