@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"html/template"
 	"io/fs"
-	"local/eldritchgarden/dailimage/config"
-	"local/eldritchgarden/dailimage/image"
 	"net/http"
+
+	"github.com/eldritchgarden/dailimage/image"
+	"github.com/eldritchgarden/dailimage/internal/config"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

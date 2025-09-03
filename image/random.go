@@ -3,11 +3,12 @@ package image
 import (
 	"errors"
 	"io/fs"
-	"local/eldritchgarden/dailimage/config"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/eldritchgarden/dailimage/internal/config"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

@@ -1,4 +1,4 @@
-module local/eldritchgarden/dailimage
+module github.com/eldritchgarden/dailimage
 
 go 1.24.5
 
