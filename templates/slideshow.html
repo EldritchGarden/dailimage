@@ -1,0 +1,14 @@
+{{define "slideshow.tmpl"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Slideshow</title>
+    <meta http-equiv="refresh" content="{{ .interval }}" />
+    <link rel="stylesheet" href="{{ .style }}">
+</head>
+<body>
+    <img src="{{ .source }}" alt="Slide" />
+</body>
+</html>
+{{end}}

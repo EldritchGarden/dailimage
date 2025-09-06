@@ -1,3 +1,12 @@
+- [Dailimage](#dailimage)
+  - [Description](#description)
+  - [Usage and Endpoints](#usage-and-endpoints)
+    - [Configuration](#configuration)
+    - [API](#api)
+      - [Examples](#examples)
+  - [Setup](#setup)
+    - [Docker and Compose](#docker-and-compose)
+
 # Dailimage
 Get a random image with a simple API call
 
@@ -44,33 +53,51 @@ All env vars are optional.
       <td>Comma separated list of proxies to trust. If not set trusted proxies
       are disabled.</td>
     </tr>
+    <tr>
+      <td>LOG_LEVEL</td>
+      <td>App logging level, set to 'debug' for more logs. Default 'info'</td>
+    </tr>
+    <tr>
+      <td>UNIQUE_FACTOR</td>
+      <td>The percentage of files left in the cache before a refresh is
+      triggered. This controls how often images may repeat, lower values
+      mean less repeats.<sup>1</sup> Valid values between 0.01-1,
+      default 0.5</td>
+    </tr>
   </tbody>
 </table>
 
+*1. May not affect subfolders depending on the number of files present.
+Caching is global for all clients, so lower values of UNIQUE_FACTOR
+may be required when using many clients. This is subject to change.
+A value of 1 will disable cache refreshes, meaning images may repeat
+frequently and new images will not be detected.*
+
 ### API
-<table>
-  <thead>
-    <tr>
-      <th>Endpoint</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>/ping</td>
-      <td>Returns a simple OK message</td>
-    </tr>
-    <tr>
-      <td>/random</td>
-      <td>Returns a random image from media dir</td>
-    </tr>
-    <tr>
-      <td>/random/*subdir</td>
-      <td>Returns a random image from a sub path under media dir. /random/art
-      would return a file under /media/art.</td>
-    </tr>
-  </tbody>
-</table>
+- `/ping` : Return a simple '200 OK' message
+- `/random` : Return a random image from the media library
+- `/random/*subpath` : Return a random image from `subpath/`
+- `/slideshow[?...]` : Web page with auto-refresh for browser use
+  - `interval=30` : Seconds between refreshes
+  - `subpath=somedir` : Use images from the specified sub folder
+  - `mode=(full | frame)` : View mode
+    - `full` uses the entire window and crops excess
+    - `frame` fits the image into the window with a small border
+
+#### Examples
+With a media folder structure like:
+```
++ media
+| + family
+| | + vacation
+| + art
+```
+
+`/random` will return an image from anywhere in 'media'
+
+`/random/family` will return an image from 'family' or 'vacation' but not 'art'
+
+`/slideshow?interval=60&subpath=art&mode=full` will show a new fullscreen image under 'art' every 60 seconds
 
 ## Setup
 ### Docker and Compose
@@ -92,5 +119,4 @@ services:
     restart: unless-stopped
 ```
 
-*Note: I recommend you pin the version, but latest will track the latest
-release version*
+*Note: I recommend you pin the version*
