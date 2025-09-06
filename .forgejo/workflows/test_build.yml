@@ -46,7 +46,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
           build-args: |
-            VERSION=$VERSION
+            VERSION=${{ env.VERSION }}
           tags: |
             ${{ vars.REGISTRY }}/${{ github.repository }}:${{ github.ref_name }}
           file: ./Dockerfile
