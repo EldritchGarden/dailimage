@@ -21,12 +21,11 @@ jobs:
         with:
           go-version: '>=1.25.0'
       - name: Build Go app
-        run: go_build.sh
+        run: bash go_build.sh
       - name: Upload artifacts
-        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-artifact@v4
         with:
-          name: dailimage-$VERSION
+          name: dailimage-${{ env.VERSION }}
           path: artifacts/*
       - name: Setup Buildx
         uses: docker/setup-buildx-action@v3
@@ -48,7 +47,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
-            VERSION=$VERSION
+            VERSION=${{ env.VERSION }}
           tags: |
             ${{ vars.REGISTRY }}/${{ github.repository }}:latest
             ${{ vars.REGISTRY }}/${{ github.repository }}:${{ github.ref_name }}

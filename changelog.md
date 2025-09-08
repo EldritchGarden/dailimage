@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0 (unreleased)
+## 0.2.0
 - Added example scripts for changing wallpaper on Windows and MacOS
 - Added slideshow page
 - Improved image selection with variable uniqueness to prevent repeats
