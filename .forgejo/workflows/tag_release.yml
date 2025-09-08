@@ -51,6 +51,6 @@ jobs:
           tags: |
             ${{ vars.REGISTRY }}/${{ github.repository }}:latest
             ${{ vars.REGISTRY }}/${{ github.repository }}:${{ github.ref_name }}
-            ${{ vars.DOCKERHUB_USERNAME }}/${{ basename(github.repository) }}:latest
-            ${{ vars.DOCKERHUB_USERNAME }}/${{ basename(github.repository) }}:${{ github.ref_name }}
+            ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.PROJECT_NAME }}:latest
+            ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.PROJECT_NAME }}:${{ github.ref_name }}
           file: ./Dockerfile
