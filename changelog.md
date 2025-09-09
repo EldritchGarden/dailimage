@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- Build static binaries to fix linux/amd64 image
+
 ## 0.2.0
 - Added example scripts for changing wallpaper on Windows and MacOS
 - Added slideshow page
