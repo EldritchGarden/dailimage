@@ -13,6 +13,7 @@ on:
       - 'go.sum'
       - 'Dockerfile'
       - 'dailimage.go'
+      - 'go_build.sh'
 
 env:
   VERSION: ${{ github.ref_name }}

@@ -11,6 +11,8 @@ mkdir -p artifacts
 for platform in $(echo "$platforms" | tr ',' ' '); do
     for arch in $(echo "$archs" | tr ',' ' '); do
         echo "Building for $platform/$arch"
-        env GOOS="$platform" GOARCH="$arch" go build -v -o "artifacts/dailimage-$version-$platform-$arch"
+        pkg_name="dailimage-$version-$platform-$arch"
+        env CGO_ENABLED=0 GOOS="$platform" GOARCH="$arch" \
+            go build -v -o "artifacts/$pkg_name" -ldflags="-w -s"
     done
 done
